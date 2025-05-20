@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KONTRAKAN DIGITAL - Solusi Sewa Kontrakan Modern</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Variabel CSS */
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ff6b6b;
+            --dark-color: #343a40;
+            --light-color: #ffffff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #3a56d4;
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .btn-accent:hover {
+            background-color: #e05555;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--light-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-color);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .search-form input, .search-form select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Properties Section */
+        .properties {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .property-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .property-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-img img {
+            transform: scale(1.1);
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .property-info p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .property-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .property-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .property-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        /* Payment Section */
+        .payment {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .payment-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .payment-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .payment-form input, .payment-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-method.active {
+            border-color: var(--primary-color);
+            background-color: rgba(74, 107, 255, 0.1);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Report Section */
+        .report {
+            padding: 80px 0;
+        }
+
+        .report-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .report-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .report-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .report-form input, .report-form textarea, .report-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .report-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--light-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-color);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--light-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">KONTRAKAN<span>DIGITAL</span></a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#properties">Cari Kontrakan</a></li>
+                    <li><a href="#payment">Bayar Sewa</a></li>
+                    <li><a href="#report">Lapor Masalah</a></li>
+                    <li><a href="#" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Temukan Kontrakan Ideal Anda</h1>
+                <p>Sistem sewa kontrakan modern dengan pembayaran digital dan manajemen properti terintegrasi</p>
+                <a href="#properties" class="btn btn-primary">Cari Kontrakan</a>
+                
+                <div class="search-box">
+                    <h3>Cari Berdasarkan Lokasi</h3>
+                    <form class="search-form">
+                        <input type="text" placeholder="Kota/Kabupaten">
+                        <input type="text" placeholder="Kecamatan">
+                        <select>
+                            <option value="">Harga Sewa</option>
+                            <option value="500000">Rp 500.000 - 1.000.000</option>
+                            <option value="1000000">Rp 1.000.000 - 2.000.000</option>
+                            <option value="2000000">Rp 2.000.000+</option>
+                        </select>
+                        <button type="submit" class="btn btn-accent">Cari</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Kenapa Memilih Kami?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Kontrakan Berkualitas</h3>
+                    <p>Kami menyediakan kontrakan dengan fasilitas lengkap dan lingkungan yang nyaman untuk ditinggali.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Pembayaran Digital</h3>
+                    <p>Bayar sewa kontrakan dengan mudah melalui berbagai metode pembayaran digital yang tersedia.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Dukungan 24/7</h3>
+                    <p>Tim kami siap membantu Anda kapan saja jika mengalami masalah terkait kontrakan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section class="properties" id="properties">
+        <div class="container">
+            <h2 class="section-title">Kontrakan Tersedia</h2>
+            <div class="properties-grid">
+                <!-- Property 1 -->
+                <div class="property-card">
+                    <div class="property-img">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan 1">
+                    </div>
+                    <div class="property-info">
+                        <h3>Kontrakan Mawar Indah</h3>
+                        <p>Jl. Mawar Indah No. 10, Bandung</p>
+                        <div class="property-meta">
+                            <span><i class="fas fa-bed"></i> 3 Kamar</span>
+                            <span><i class="fas fa-bath"></i> 2 Kamar Mandi</span>
+                            <span><i class="fas fa-ruler-combined"></i> 60m²</span>
+                        </div>
+                        <div class="property-price">Rp 1.500.000/bulan</div>
+                        <button class="btn btn-primary" onclick="openModal('property1')">Detail</button>
+                        <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
+                    </div>
+                </div>
+                
+                <!-- Property 2 -->
+                <div class="property-card">
+                    <div class="property-img">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan 2">
+                    </div>
+                    <div class="property-info">
+                        <h3>Kontrakan Melati Asri</h3>
+                        <p>Jl. Melati No. 5, Jakarta</p>
+                        <div class="property-meta">
+                            <span><i class="fas fa-bed"></i> 2 Kamar</span>
+                            <span><i class="fas fa-bath"></i> 1 Kamar Mandi</span>
+                            <span><i class="fas fa-ruler-combined"></i> 45m²</span>
+                        </div>
+                        <div class="property-price">Rp 1.200.000/bulan</div>
+                        <button class="btn btn-primary" onclick="openModal('property2')">Detail</button>
+                        <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
+                    </div>
+                </div>
+                
+                <!-- Property 3 -->
+                <div class="property-card">
+                    <div class="property-img">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan 3">
+                    </div>
+                    <div class="property-info">
+                        <h3>Kontrakan Anggrek Permai</h3>
+                        <p>Jl. Anggrek No. 15, Surabaya</p>
+                        <div class="property-meta">
+                            <span><i class="fas fa-bed"></i> 4 Kamar</span>
+                            <span><i class="fas fa-bath"></i> 2 Kamar Mandi</span>
+                            <span><i class="fas fa-ruler-combined"></i> 75m²</span>
+                        </div>
+                        <div class="property-price">Rp 2.000.000/bulan</div>
+                        <button class="btn btn-primary" onclick="openModal('property3')">Detail</button>
+                        <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment" id="payment">
+        <div class="container">
+            <h2 class="section-title">Pembayaran Digital</h2>
+            <div class="payment-container">
+                <h3>Bayar Sewa Kontrakan</h3>
+                <p>Lakukan pembayaran sewa kontrakan Anda dengan mudah dan aman melalui sistem kami.</p>
+                
+                <form class="payment-form">
+                    <div class="form-group">
+                        <label for="property">Pilih Kontrakan</label>
+                        <select id="property" required>
+                            <option value="">-- Pilih Kontrakan --</option>
+                            <option value="property1">Kontrakan Mawar Indah - Rp 1.500.000/bulan</option>
+                            <option value="property2">Kontrakan Melati Asri - Rp 1.200.000/bulan</option>
+                            <option value="property3">Kontrakan Anggrek Permai - Rp 2.000.000/bulan</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="month">Bulan yang Dibayar</label>
+                        <select id="month" required>
+                            <option value="">-- Pilih Bulan --</option>
+                            <option value="januari">Januari</option>
+                            <option value="februari">Februari</option>
+                            <option value="maret">Maret</option>
+                            <option value="april">April</option>
+                            <option value="mei">Mei</option>
+                            <option value="juni">Juni</option>
+                            <option value="juli">Juli</option>
+                            <option value="agustus">Agustus</option>
+                            <option value="september">September</option>
+                            <option value="oktober">Oktober</option>
+                            <option value="november">November</option>
+                            <option value="desember">Desember</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Jumlah Pembayaran</label>
+                        <input type="text" id="amount" placeholder="Masukkan jumlah pembayaran" required>
+                    </div>
+                    
+                    <h4>Metode Pembayaran</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPaymentMethod('bank')">
+                            <i class="fas fa-university"></i>
+                            <p>Transfer Bank</p>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('ewallet')">
+                            <i class="fas fa-wallet"></i>
+                            <p>E-Wallet</p>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('virtual')">
+                            <i class="fas fa-credit-card"></i>
+                            <p>Virtual Account</p>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Bayar Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Section -->
+    <section class="report" id="report">
+        <div class="container">
+            <h2 class="section-title">Lapor Masalah</h2>
+            <div class="report-container">
+                <h3>Laporkan Masalah Kontrakan Anda</h3>
+                <p>Jika Anda mengalami masalah dengan kontrakan yang disewa, silakan laporkan melalui form berikut.</p>
+                
+                <form class="report-form">
+                    <div class="form-group">
+                        <label for="report-property">Kontrakan</label>
+                        <select id="report-property" required>
+                            <option value="">-- Pilih Kontrakan --</option>
+                            <option value="property1">Kontrakan Mawar Indah</option>
+                            <option value="property2">Kontrakan Melati Asri</option>
+                            <option value="property3">Kontrakan Anggrek Permai</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="report-type">Jenis Masalah</label>
+                        <select id="report-type" required>
+                            <option value="">-- Pilih Jenis Masalah --</option>
+                            <option value="plumbing">Masalah Pipa Air</option>
+                            <option value="electricity">Masalah Listrik</option>
+                            <option value="cleanliness">Kebersihan</option>
+                            <option value="security">Keamanan</option>
+                            <option value="other">Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="report-details">Detail Masalah</label>
+                        <textarea id="report-details" placeholder="Jelaskan masalah yang Anda alami secara detail..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="report-contact">Kontak yang Bisa Dihubungi</label>
+                        <input type="text" id="report-contact" placeholder="Nomor HP/WhatsApp" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-accent">Kirim Laporan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang Kami</h3>
+                    <p>KONTRAKAN DIGITAL adalah platform digital untuk memudahkan pencarian dan pengelolaan kontrakan dengan sistem pembayaran terintegrasi.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#properties">Cari Kontrakan</a></li>
+                        <li><a href="#payment">Bayar Sewa</a></li>
+                        <li><a href="#report">Lapor Masalah</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Digital No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> info@kontrakandigital.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 KONTRAKAN DIGITAL. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Property Detail Modal -->
+    <div class="modal" id="propertyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalPropertyTitle">Kontrakan Mawar Indah</h2>
+            <div class="property-img">
+                <img id="modalPropertyImage" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan">
+            </div>
+            <div class="property-info">
+                <p id="modalPropertyAddress">Jl. Mawar Indah No. 10, Bandung</p>
+                <div class="property-meta">
+                    <span><i class="fas fa-bed"></i> <span id="modalPropertyBed">3</span> Kamar</span>
+                    <span><i class="fas fa-bath"></i> <span id="modalPropertyBath">2</span> Kamar Mandi</span>
+                    <span><i class="fas fa-ruler-combined"></i> <span id="modalPropertySize">60</span>m²</span>
+                </div>
+                <div class="property-price" id="modalPropertyPrice">Rp 1.500.000/bulan</div>
+                <p id="modalPropertyDescription">Kontrakan nyaman dengan 3 kamar tidur, 2 kamar mandi, dapur bersama, dan ruang tamu. Lokasi strategis dekat pusat kota dengan akses transportasi yang mudah.</p>
+                <h3>Fasilitas:</h3>
+                <ul id="modalPropertyFacilities">
+                    <li><i class="fas fa-check"></i> Kamar mandi dalam</li>
+                    <li><i class="fas fa-check"></i> Dapur bersama</li>
+                    <li><i class="fas fa-check"></i> Ruang tamu</li>
+                    <li><i class="fas fa-check"></i> Parkiran motor</li>
+                    <li><i class="fas fa-check"></i> Wifi</li>
+                    <li><i class="fas fa-check"></i> Air bersih</li>
+                </ul>
+                <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Pembayaran Sewa</h2>
+            <form class="payment-form">
+                <div class="form-group">
+                    <label for="modal-property">Kontrakan</label>
+                    <select id="modal-property" required>
+                        <option value="">-- Pilih Kontrakan --</option>
+                        <option value="property1">Kontrakan Mawar Indah - Rp 1.500.000/bulan</option>
+                        <option value="property2">Kontrakan Melati Asri - Rp 1.200.000/bulan</option>
+                        <option value="property3">Kontrakan Anggrek Permai - Rp 2.000.000/bulan</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-month">Bulan yang Dibayar</label>
+                    <select id="modal-month" required>
+                        <option value="">-- Pilih Bulan --</option>
+                        <option value="januari">Januari</option>
+                        <option value="februari">Februari</option>
+                        <option value="maret">Maret</option>
+                        <option value="april">April</option>
+                        <option value="mei">Mei</option>
+                        <option value="juni">Juni</option>
+                        <option value="juli">Juli</option>
+                        <option value="agustus">Agustus</option>
+                        <option value="september">September</option>
+                        <option value="oktober">Oktober</option>
+                        <option value="november">November</option>
+                        <option value="desember">Desember</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-amount">Jumlah Pembayaran</label>
+                    <input type="text" id="modal-amount" placeholder="Masukkan jumlah pembayaran" required>
+                </div>
+                
+                <h4>Metode Pembayaran</h4>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectModalPaymentMethod('bank')">
+                        <i class="fas fa-university"></i>
+                        <p>Transfer Bank</p>
+                    </div>
+                    <div class="payment-method" onclick="selectModalPaymentMethod('ewallet')">
+                        <i class="fas fa-wallet"></i>
+                        <p>E-Wallet</p>
+                    </div>
+                    <div class="payment-method" onclick="selectModalPaymentMethod('virtual')">
+                        <i class="fas fa-credit-card"></i>
+                        <p>Virtual Account</p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Bayar Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Login Akun</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Masukkan email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Masukkan password Anda" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p style="text-align: center; margin-top: 15px;">Belum punya akun? <a href="#" id="showRegister">Daftar disini</a></p>
+            </form>
+
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label for="reg-name">Nama Lengkap</label>
+                    <input type="text" id="reg-name" placeholder="Masukkan nama lengkap" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" placeholder="Masukkan email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">Nomor HP</label>
+                    <input type="tel" id="reg-phone" placeholder="Masukkan nomor HP" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" placeholder="Buat password" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm">Konfirmasi Password</label>
+                    <input type="password" id="reg-confirm" placeholder="Ulangi password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+                <p style="text-align: center; margin-top: 15px;">Sudah punya akun? <a href="#" id="showLogin">Login disini</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Property Data
+        const properties = {
+            property1: {
+                title: "Kontrakan Mawar Indah",
+                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                address: "Jl. Mawar Indah No. 10, Bandung",
+                bed: 3,
+                bath: 2,
+                size: 60,
+                price: "Rp 1.500.000/bulan",
+                description: "Kontrakan nyaman dengan 3 kamar tidur, 2 kamar mandi, dapur bersama, dan ruang tamu. Lokasi strategis dekat pusat kota dengan akses transportasi yang mudah.",
+                facilities: [
+                    "Kamar mandi dalam",
+                    "Dapur bersama",
+                    "Ruang tamu",
+                    "Parkiran motor",
+                    "Wifi",
+                    "Air bersih"
+                ]
+            },
+            property2: {
+                title: "Kontrakan Melati Asri",
+                image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                address: "Jl. Melati No. 5, Jakarta",
+                bed: 2,
+                bath: 1,
+                size: 45,
+                price: "Rp 1.200.000/bulan",
+                description: "Kontrakan cozy dengan 2 kamar tidur dan 1 kamar mandi. Lingkungan asri dan aman dengan fasilitas memadai untuk kebutuhan harian.",
+                facilities: [
+                    "Kamar mandi dalam",
+                    "Dapur kecil",
+                    "Area jemur",
+                    "Parkiran motor",
+                    "Air bersih",
+                    "Keamanan 24 jam"
+                ]
+            },
+            property3: {
+                title: "Kontrakan Anggrek Permai",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                address: "Jl. Anggrek No. 15, Surabaya",
+                bed: 4,
+                bath: 2,
+                size: 75,
+                price: "Rp 2.000.000/bulan",
+                description: "Kontrakan luas dengan 4 kamar tidur cocok untuk keluarga kecil atau kelompok. Dilengkapi dengan ruang tamu besar dan dapur lengkap.",
+                facilities: [
+                    "2 Kamar mandi dalam",
+                    "Dapur lengkap",
+                    "Ruang tamu luas",
+                    "Parkiran mobil dan motor",
+                    "Wifi high-speed",
+                    "Air bersih dan AC di ruang tamu"
+                ]
+            }
+        };
+
+        // Modal Functions
+        function openModal(propertyId) {
+            const property = properties[propertyId];
+            document.getElementById('modalPropertyTitle').textContent = property.title;
+            document.getElementById('modalPropertyImage').src = property.image;
+            document.getElementById('modalPropertyImage').alt = property.title;
+            document.getElementById('modalPropertyAddress').textContent = property.address;
+            document.getElementById('modalPropertyBed').textContent = property.bed;
+            document.getElementById('modalPropertyBath').textContent = property.bath;
+            document.getElementById('modalPropertySize').textContent = property.size;
+            document.getElementById('modalPropertyPrice').textContent = property.price;
+            document.getElementById('modalPropertyDescription').textContent = property.description;
+            
+            const facilitiesList = document.getElementById('modalPropertyFacilities');
+            facilitiesList.innerHTML = '';
+            property.facilities.forEach(facility => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-check"></i> ${facility}`;
+                facilitiesList.appendChild(li);
+            });
+            
+            document.getElementById('propertyModal').style.display = 'flex';
+        }
+
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+            closeModal(); // Close other open modals
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal();
+            }
+        });
+
+        // Payment Method Selection
+        function selectPaymentMethod(method) {
+            document.querySelectorAll('.payment-methods .payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        function selectModalPaymentMethod(method) {
+            document.querySelectorAll('#paymentModal .payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        // Login/Register Form Toggle
+        document.getElementById('showRegister').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        });
+
+        document.getElementById('showLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+
+        // Form Submissions
+        document.getElementById('loginBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            openLoginModal();
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Login berhasil!');
+            closeModal();
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm').value;
+            
+            if (password !== confirm) {
+                alert('Password dan konfirmasi password tidak sama!');
+                return;
+            }
+            
+            alert('Pendaftaran berhasil! Silakan login.');
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+
+        document.querySelector('.payment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Pembayaran berhasil diproses! Kami akan mengirimkan konfirmasi via email.');
+            closeModal();
+        });
+
+        document.querySelector('#paymentModal .payment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Pembayaran berhasil diproses! Kami akan mengirimkan konfirmasi via email.');
+            closeModal();
+        });
+
+        document.querySelector('.report-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Laporan Anda telah kami terima. Tim kami akan segera menghubungi Anda.');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Auto update payment amount when property is selected
+        document.getElementById('property').addEventListener('change', function() {
+            const amountField = document.getElementById('amount');
+            if (this.value === 'property1') {
+                amountField.value = '1500000';
+            } else if (this.value === 'property2') {
+                amountField.value = '1200000';
+            } else if (this.value === 'property3') {
+                amountField.value = '2000000';
+            }
+        });
+
+        document.getElementById('modal-property').addEventListener('change', function() {
+            const amountField = document.getElementById('modal-amount');
+            if (this.value === 'property1') {
+                amountField.value = '1500000';
+            } else if (this.value === 'property2') {
+                amountField.value = '1200000';
+            } else if (this.value === 'property3') {
+                amountField.value = '2000000';
+            }
+        });
+    </script>
+</body>
+</html>
+                  
