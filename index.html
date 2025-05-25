@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KONTRAKAN DIGITAL - Solusi Sewa Kontrakan Modern</title>
+    <title>Puzzle Game Spektakuler</title>
     <style>
-        /* Reset CSS */
+        /* Reset dan Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -13,1244 +13,1309 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Variabel CSS */
-        :root {
-            --primary-color: #4a6bff;
-            --secondary-color: #f8f9fa;
-            --accent-color: #ff6b6b;
-            --dark-color: #343a40;
-            --light-color: #ffffff;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-        }
-
-        /* Global Styles */
         body {
-            background-color: var(--secondary-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5d9ff 0%, #e0c4fd 100%);
+            padding: 20px;
+            color: #4a1d96;
         }
 
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-        }
-
-        .btn-primary:hover {
-            background-color: #3a56d4;
-            transform: translateY(-2px);
-        }
-
-        .btn-accent {
-            background-color: var(--accent-color);
-            color: var(--light-color);
-        }
-
-        .btn-accent:hover {
-            background-color: #e05555;
-            transform: translateY(-2px);
-        }
-
-        .section-title {
+        /* Header */
+        .header {
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: var(--dark-color);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary-color);
-            margin: 10px auto 0;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--light-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .logo span {
-            color: var(--accent-color);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--light-color);
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
             margin-bottom: 30px;
         }
 
-        .search-box {
-            background-color: var(--light-color);
+        .header h1 {
+            font-size: 2.5rem;
+            color: #5b21b6;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #6b46c1;
+        }
+
+        /* Game Controls */
+        .controls {
+            background: white;
+            border-radius: 12px;
             padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .search-form input, .search-form select {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 15px;
-            font-size: 1.5rem;
         }
 
-        /* Properties Section */
-        .properties {
-            padding: 80px 0;
-            background-color: var(--light-color);
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s ease;
         }
 
-        .properties-grid {
+        .btn-primary {
+            background-color: #7c3aed;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #6d28d9;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #7c3aed;
+            color: #7c3aed;
+        }
+
+        .btn-outline:hover {
+            background-color: #ede9fe;
+        }
+
+        .btn-sm {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            font-weight: 600;
+            color: #4a1d96;
+            flex: 1;
+        }
+
+        /* Stats */
+        .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .property-card {
-            background-color: var(--secondary-color);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .property-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .property-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .property-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .property-card:hover .property-img img {
-            transform: scale(1.1);
-        }
-
-        .property-info {
-            padding: 20px;
-        }
-
-        .property-info h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-
-        .property-info p {
-            margin-bottom: 15px;
-            color: #666;
-        }
-
-        .property-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-bottom: 15px;
         }
 
-        .property-meta {
+        .stat-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #ddd;
+        }
+
+        /* Progress */
+        .progress-container {
+            margin-top: 15px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e9d5ff;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #7c3aed;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Game Area */
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .preview-desc {
+            color: #666;
             margin-bottom: 15px;
             font-size: 0.9rem;
         }
 
-        .property-meta span {
+        /* Puzzle Board */
+        .puzzle-board {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .puzzle-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
-        .property-meta i {
-            margin-right: 5px;
-            color: var(--primary-color);
+        .puzzle-content {
+            padding: 20px;
         }
 
-        /* Payment Section */
-        .payment {
-            padding: 80px 0;
-            background-color: var(--secondary-color);
-        }
-
-        .payment-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--light-color);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .payment-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .payment-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .payment-form input, .payment-form select {
+        .hint-image {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
+            height: 150px;
+            object-fit: contain;
+            opacity: 0.5;
+            border-radius: 8px;
+            border: 2px dashed #c4b5fd;
+            margin-bottom: 15px;
+            position: relative;
         }
 
-        .payment-methods {
-            display: flex;
-            gap: 15px;
-            margin: 20px 0;
+        .hint-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #7c3aed;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
 
-        .payment-method {
-            flex: 1;
-            text-align: center;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .puzzle-container {
+            position: relative;
+            background-color: #f9fafb;
+            border-radius: 12px;
+            border: 2px dashed #c4b5fd;
+            margin: 0 auto;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .payment-method:hover {
-            border-color: var(--primary-color);
+        .puzzle-container.active {
+            border-color: #7c3aed;
+            background-color: #f5f3ff;
         }
 
-        .payment-method.active {
-            border-color: var(--primary-color);
-            background-color: rgba(74, 107, 255, 0.1);
-        }
-
-        .payment-method i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        /* Report Section */
-        .report {
-            padding: 80px 0;
-        }
-
-        .report-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--light-color);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .report-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .report-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .report-form input, .report-form textarea, .report-form select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .report-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: var(--light-color);
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
+        .puzzle-grid {
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: #bbb;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--light-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--light-color);
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
+            pointer-events: none;
+            opacity: 0.3;
+            background-image: 
+                linear-gradient(to right, rgba(124, 58, 237, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(124, 58, 237, 0.3) 1px, transparent 1px);
+        }
+
+        .puzzle-piece {
+            position: absolute;
+            z-index: 1;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .piece-check {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+        }
+
+        .empty-state {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+
+        .empty-emoji {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .empty-text {
+            font-size: 0.8rem;
+        }
+
+        .selected-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #7c3aed;
+            border-radius: 12px;
+            pointer-events: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .selected-hint {
+            padding: 10px;
+            background-color: #f5f3ff;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #5b21b6;
+            font-weight: 500;
+        }
+
+        /* Pieces Area */
+        .pieces-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .piece-thumbnail {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .piece-thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .piece-thumbnail.selected {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 2px #7c3aed;
+        }
+
+        .piece-number {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 25px;
+            height: 25px;
+            background-color: #7c3aed;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .piece-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(124, 58, 237, 0.2);
+            border-radius: 8px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .no-pieces {
+            text-align: center;
+            padding: 40px 0;
+            color: #9ca3af;
+        }
+
+        .no-pieces-emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .instructions {
+            background-color: #f5f3ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .instructions-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #5b21b6;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .instructions-list {
+            font-size: 0.8rem;
+            color: #5b21b6;
+        }
+
+        .instructions-list p {
+            margin-bottom: 3px;
+        }
+
+        /* Celebration Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
 
         .modal-content {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 500px;
+            background-color: white;
+            border-radius: 12px;
             width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
+            max-width: 400px;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
             font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-color);
+            font-weight: 700;
+            color: #5b21b6;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
+        .modal-body {
+            padding: 20px;
+            text-align: center;
         }
 
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+        .modal-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .modal-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
             }
 
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--light-color);
-                flex-direction: column;
-                align-items: center;
-                padding: 40px 0;
-                transition: left 0.3s ease;
+            .controls-row {
+                flex-wrap: nowrap;
             }
 
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .hero {
-                padding: 80px 0;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
+            .pieces-container {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
+        @media (min-width: 1024px) {
+            .game-area {
+                flex-direction: row;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .preview-card {
+                flex: 1;
             }
 
-            .search-form {
-                grid-template-columns: 1fr;
+            .puzzle-section {
+                flex: 2;
             }
 
-            .payment-methods {
-                flex-direction: column;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
+            .pieces-container {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
     </style>
-    <!-- Font Awesome untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">KONTRAKAN<span>DIGITAL</span></a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>
+                <span>❤️</span>
+                Puzzle Game Spektakuler
+                <span>❤️</span>
+            </h1>
+            <p>Susun puzzle foto dengan bentuk tradisional yang menantang!</p>
+        </div>
+
+        <!-- Game Controls -->
+        <div class="controls">
+            <div class="controls-row">
+                <button id="upload-btn" class="btn btn-outline">
+                    <span>📤</span> Upload
                 </button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#properties">Cari Kontrakan</a></li>
-                    <li><a href="#payment">Bayar Sewa</a></li>
-                    <li><a href="#report">Lapor Masalah</a></li>
-                    <li><a href="#" id="loginBtn">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+                <select id="difficulty-select">
+                    <option value="2">Mudah (2x2)</option>
+                    <option value="3" selected>Sedang (3x3)</option>
+                    <option value="4">Sulit (4x4)</option>
+                </select>
+                <button id="start-btn" class="btn btn-primary">
+                    <span>▶️</span> Mulai
+                </button>
+                <button id="reset-btn" class="btn btn-outline btn-sm">
+                    <span>🔄</span>
+                </button>
+            </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Temukan Kontrakan Ideal Anda</h1>
-                <p>Sistem sewa kontrakan modern dengan pembayaran digital dan manajemen properti terintegrasi</p>
-                <a href="#properties" class="btn btn-primary">Cari Kontrakan</a>
-                
-                <div class="search-box">
-                    <h3>Cari Berdasarkan Lokasi</h3>
-                    <form class="search-form">
-                        <input type="text" placeholder="Kota/Kabupaten">
-                        <input type="text" placeholder="Kecamatan">
-                        <select>
-                            <option value="">Harga Sewa</option>
-                            <option value="500000">Rp 500.000 - 1.000.000</option>
-                            <option value="1000000">Rp 1.000.000 - 2.000.000</option>
-                            <option value="2000000">Rp 2.000.000+</option>
-                        </select>
-                        <button type="submit" class="btn btn-accent">Cari</button>
-                    </form>
+            <div class="stats">
+                <div class="stat-item">
+                    <span>Waktu:</span>
+                    <span id="time-display" class="badge">00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span>Gerakan:</span>
+                    <span id="moves-display" class="badge">0</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Kenapa Memilih Kami?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Kontrakan Berkualitas</h3>
-                    <p>Kami menyediakan kontrakan dengan fasilitas lengkap dan lingkungan yang nyaman untuk ditinggali.</p>
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>Progress:</span>
+                    <span id="progress-percent">0%</span>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>Pembayaran Digital</h3>
-                    <p>Bayar sewa kontrakan dengan mudah melalui berbagai metode pembayaran digital yang tersedia.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Dukungan 24/7</h3>
-                    <p>Tim kami siap membantu Anda kapan saja jika mengalami masalah terkait kontrakan.</p>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Properties Section -->
-    <section class="properties" id="properties">
-        <div class="container">
-            <h2 class="section-title">Kontrakan Tersedia</h2>
-            <div class="properties-grid">
-                <!-- Property 1 -->
-                <div class="property-card">
-                    <div class="property-img">
-                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan 1">
-                    </div>
-                    <div class="property-info">
-                        <h3>Kontrakan Mawar Indah</h3>
-                        <p>Jl. Mawar Indah No. 10, Bandung</p>
-                        <div class="property-meta">
-                            <span><i class="fas fa-bed"></i> 3 Kamar</span>
-                            <span><i class="fas fa-bath"></i> 2 Kamar Mandi</span>
-                            <span><i class="fas fa-ruler-combined"></i> 60m²</span>
-                        </div>
-                        <div class="property-price">Rp 1.500.000/bulan</div>
-                        <button class="btn btn-primary" onclick="openModal('property1')">Detail</button>
-                        <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
-                    </div>
-                </div>
-                
-                <!-- Property 2 -->
-                <div class="property-card">
-                    <div class="property-img">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan 2">
-                    </div>
-                    <div class="property-info">
-                        <h3>Kontrakan Melati Asri</h3>
-                        <p>Jl. Melati No. 5, Jakarta</p>
-                        <div class="property-meta">
-                            <span><i class="fas fa-bed"></i> 2 Kamar</span>
-                            <span><i class="fas fa-bath"></i> 1 Kamar Mandi</span>
-                            <span><i class="fas fa-ruler-combined"></i> 45m²</span>
-                        </div>
-                        <div class="property-price">Rp 1.200.000/bulan</div>
-                        <button class="btn btn-primary" onclick="openModal('property2')">Detail</button>
-                        <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
-                    </div>
-                </div>
-                
-                <!-- Property 3 -->
-                <div class="property-card">
-                    <div class="property-img">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan 3">
-                    </div>
-                    <div class="property-info">
-                        <h3>Kontrakan Anggrek Permai</h3>
-                        <p>Jl. Anggrek No. 15, Surabaya</p>
-                        <div class="property-meta">
-                            <span><i class="fas fa-bed"></i> 4 Kamar</span>
-                            <span><i class="fas fa-bath"></i> 2 Kamar Mandi</span>
-                            <span><i class="fas fa-ruler-combined"></i> 75m²</span>
-                        </div>
-                        <div class="property-price">Rp 2.000.000/bulan</div>
-                        <button class="btn btn-primary" onclick="openModal('property3')">Detail</button>
-                        <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
-                    </div>
-                </div>
+            <div id="game-actions" class="controls-row" style="display: none; margin-top: 15px;">
+                <button id="hint-btn" class="btn btn-outline">
+                    <span>👁️</span> Hint
+                </button>
+                <button id="shuffle-btn" class="btn btn-outline">
+                    <span>🔀</span> Acak
+                </button>
             </div>
         </div>
-    </section>
 
-    <!-- Payment Section -->
-    <section class="payment" id="payment">
-        <div class="container">
-            <h2 class="section-title">Pembayaran Digital</h2>
-            <div class="payment-container">
-                <h3>Bayar Sewa Kontrakan</h3>
-                <p>Lakukan pembayaran sewa kontrakan Anda dengan mudah dan aman melalui sistem kami.</p>
-                
-                <form class="payment-form">
-                    <div class="form-group">
-                        <label for="property">Pilih Kontrakan</label>
-                        <select id="property" required>
-                            <option value="">-- Pilih Kontrakan --</option>
-                            <option value="property1">Kontrakan Mawar Indah - Rp 1.500.000/bulan</option>
-                            <option value="property2">Kontrakan Melati Asri - Rp 1.200.000/bulan</option>
-                            <option value="property3">Kontrakan Anggrek Permai - Rp 2.000.000/bulan</option>
-                        </select>
+        <!-- Game Area -->
+        <div class="game-area">
+            <!-- Preview Area (shown when game not started) -->
+            <div id="preview-card" class="preview-card">
+                <img id="preview-image" src="https://via.placeholder.com/400x300?text=Puzzle+Image" alt="Preview" class="preview-image">
+                <h3 class="preview-text">Siap bermain puzzle?</h3>
+                <p class="preview-desc">Klik "Mulai" untuk memecah foto menjadi puzzle dengan bentuk tradisional!</p>
+                <button id="start-btn-2" class="btn btn-primary" style="width: 100%;">
+                    <span>▶️</span> Mulai Bermain
+                </button>
+            </div>
+
+            <!-- Puzzle Area (shown when game started) -->
+            <div id="puzzle-section" class="puzzle-section" style="display: none; flex: 2;">
+                <!-- Puzzle Board -->
+                <div class="puzzle-board">
+                    <div class="puzzle-header">
+                        <span>🧩 Area Puzzle</span>
+                        <span id="selected-piece-badge" class="badge" style="display: none;">Piece 1 dipilih</span>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="month">Bulan yang Dibayar</label>
-                        <select id="month" required>
-                            <option value="">-- Pilih Bulan --</option>
-                            <option value="januari">Januari</option>
-                            <option value="februari">Februari</option>
-                            <option value="maret">Maret</option>
-                            <option value="april">April</option>
-                            <option value="mei">Mei</option>
-                            <option value="juni">Juni</option>
-                            <option value="juli">Juli</option>
-                            <option value="agustus">Agustus</option>
-                            <option value="september">September</option>
-                            <option value="oktober">Oktober</option>
-                            <option value="november">November</option>
-                            <option value="desember">Desember</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="amount">Jumlah Pembayaran</label>
-                        <input type="text" id="amount" placeholder="Masukkan jumlah pembayaran" required>
-                    </div>
-                    
-                    <h4>Metode Pembayaran</h4>
-                    <div class="payment-methods">
-                        <div class="payment-method" onclick="selectPaymentMethod('bank')">
-                            <i class="fas fa-university"></i>
-                            <p>Transfer Bank</p>
+                    <div class="puzzle-content">
+                        <div id="hint-container" style="display: none;">
+                            <div style="position: relative;">
+                                <img id="hint-image" src="https://via.placeholder.com/400x300?text=Hint" alt="Hint" class="hint-image">
+                                <span class="hint-badge">Hint</span>
+                            </div>
                         </div>
-                        <div class="payment-method" onclick="selectPaymentMethod('ewallet')">
-                            <i class="fas fa-wallet"></i>
-                            <p>E-Wallet</p>
+
+                        <div id="puzzle-container" class="puzzle-container" style="width: 300px; height: 300px;">
+                            <div class="puzzle-grid"></div>
+                            <div class="empty-state">
+                                <div>
+                                    <div class="empty-emoji">🧩</div>
+                                    <div class="empty-text">Pilih piece, lalu klik disini</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="payment-method" onclick="selectPaymentMethod('virtual')">
-                            <i class="fas fa-credit-card"></i>
-                            <p>Virtual Account</p>
+
+                        <div id="selected-hint" class="selected-hint" style="display: none;">
+                            👆 Klik area puzzle untuk pasang piece <span id="selected-piece-number">1</span>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">Bayar Sekarang</button>
-                </form>
-            </div>
-        </div>
-    </section>
+                </div>
 
-    <!-- Report Section -->
-    <section class="report" id="report">
-        <div class="container">
-            <h2 class="section-title">Lapor Masalah</h2>
-            <div class="report-container">
-                <h3>Laporkan Masalah Kontrakan Anda</h3>
-                <p>Jika Anda mengalami masalah dengan kontrakan yang disewa, silakan laporkan melalui form berikut.</p>
-                
-                <form class="report-form">
-                    <div class="form-group">
-                        <label for="report-property">Kontrakan</label>
-                        <select id="report-property" required>
-                            <option value="">-- Pilih Kontrakan --</option>
-                            <option value="property1">Kontrakan Mawar Indah</option>
-                            <option value="property2">Kontrakan Melati Asri</option>
-                            <option value="property3">Kontrakan Anggrek Permai</option>
-                        </select>
+                <!-- Pieces Area -->
+                <div class="puzzle-board" style="margin-top: 20px;">
+                    <div class="puzzle-header">
+                        <span>🔀 Pieces Puzzle</span>
+                        <span id="remaining-pieces" class="badge">0 tersisa</span>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="report-type">Jenis Masalah</label>
-                        <select id="report-type" required>
-                            <option value="">-- Pilih Jenis Masalah --</option>
-                            <option value="plumbing">Masalah Pipa Air</option>
-                            <option value="electricity">Masalah Listrik</option>
-                            <option value="cleanliness">Kebersihan</option>
-                            <option value="security">Keamanan</option>
-                            <option value="other">Lainnya</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="report-details">Detail Masalah</label>
-                        <textarea id="report-details" placeholder="Jelaskan masalah yang Anda alami secara detail..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="report-contact">Kontak yang Bisa Dihubungi</label>
-                        <input type="text" id="report-contact" placeholder="Nomor HP/WhatsApp" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-accent">Kirim Laporan</button>
-                </form>
-            </div>
-        </div>
-    </section>
+                    <div class="puzzle-content">
+                        <div id="pieces-container" class="pieces-container">
+                            <!-- Pieces will be added here dynamically -->
+                        </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Tentang Kami</h3>
-                    <p>KONTRAKAN DIGITAL adalah platform digital untuk memudahkan pencarian dan pengelolaan kontrakan dengan sistem pembayaran terintegrasi.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <div id="no-pieces" class="no-pieces" style="display: none;">
+                            <div class="no-pieces-emoji">🎉</div>
+                            <div>Semua pieces sudah dipasang!</div>
+                        </div>
+
+                        <div class="instructions">
+                            <div class="instructions-title">
+                                <span>💡</span> Cara bermain:
+                            </div>
+                            <div class="instructions-list">
+                                <p>1. Klik piece untuk memilih (akan highlight)</p>
+                                <p>2. Klik area puzzle untuk memasang</p>
+                                <p>3. Piece akan terpasang jika posisi benar</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Link Cepat</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#properties">Cari Kontrakan</a></li>
-                        <li><a href="#payment">Bayar Sewa</a></li>
-                        <li><a href="#report">Lapor Masalah</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Kontak Kami</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Jl. Digital No. 123, Jakarta</li>
-                        <li><i class="fas fa-phone"></i> (021) 1234-5678</li>
-                        <li><i class="fas fa-envelope"></i> info@kontrakandigital.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 KONTRAKAN DIGITAL. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Property Detail Modal -->
-    <div class="modal" id="propertyModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalPropertyTitle">Kontrakan Mawar Indah</h2>
-            <div class="property-img">
-                <img id="modalPropertyImage" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kontrakan">
-            </div>
-            <div class="property-info">
-                <p id="modalPropertyAddress">Jl. Mawar Indah No. 10, Bandung</p>
-                <div class="property-meta">
-                    <span><i class="fas fa-bed"></i> <span id="modalPropertyBed">3</span> Kamar</span>
-                    <span><i class="fas fa-bath"></i> <span id="modalPropertyBath">2</span> Kamar Mandi</span>
-                    <span><i class="fas fa-ruler-combined"></i> <span id="modalPropertySize">60</span>m²</span>
-                </div>
-                <div class="property-price" id="modalPropertyPrice">Rp 1.500.000/bulan</div>
-                <p id="modalPropertyDescription">Kontrakan nyaman dengan 3 kamar tidur, 2 kamar mandi, dapur bersama, dan ruang tamu. Lokasi strategis dekat pusat kota dengan akses transportasi yang mudah.</p>
-                <h3>Fasilitas:</h3>
-                <ul id="modalPropertyFacilities">
-                    <li><i class="fas fa-check"></i> Kamar mandi dalam</li>
-                    <li><i class="fas fa-check"></i> Dapur bersama</li>
-                    <li><i class="fas fa-check"></i> Ruang tamu</li>
-                    <li><i class="fas fa-check"></i> Parkiran motor</li>
-                    <li><i class="fas fa-check"></i> Wifi</li>
-                    <li><i class="fas fa-check"></i> Air bersih</li>
-                </ul>
-                <button class="btn btn-accent" onclick="openPaymentModal()">Sewa Sekarang</button>
             </div>
         </div>
     </div>
 
-    <!-- Payment Modal -->
-    <div class="modal" id="paymentModal">
+    <!-- Celebration Modal -->
+    <div id="celebration-modal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2>Pembayaran Sewa</h2>
-            <form class="payment-form">
-                <div class="form-group">
-                    <label for="modal-property">Kontrakan</label>
-                    <select id="modal-property" required>
-                        <option value="">-- Pilih Kontrakan --</option>
-                        <option value="property1">Kontrakan Mawar Indah - Rp 1.500.000/bulan</option>
-                        <option value="property2">Kontrakan Melati Asri - Rp 1.200.000/bulan</option>
-                        <option value="property3">Kontrakan Anggrek Permai - Rp 2.000.000/bulan</option>
-                    </select>
-                </div>
+            <div class="modal-header">
+                <h2 class="modal-title">🎉 Selamat! 🎉</h2>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="https://via.placeholder.com/400x300?text=Completed+Puzzle" alt="Completed Puzzle" class="modal-image">
+                <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Puzzle Berhasil Diselesaikan!</h3>
                 
-                <div class="form-group">
-                    <label for="modal-month">Bulan yang Dibayar</label>
-                    <select id="modal-month" required>
-                        <option value="">-- Pilih Bulan --</option>
-                        <option value="januari">Januari</option>
-                        <option value="februari">Februari</option>
-                        <option value="maret">Maret</option>
-                        <option value="april">April</option>
-                        <option value="mei">Mei</option>
-                        <option value="juni">Juni</option>
-                        <option value="juli">Juli</option>
-                        <option value="agustus">Agustus</option>
-                        <option value="september">September</option>
-                        <option value="oktober">Oktober</option>
-                        <option value="november">November</option>
-                        <option value="desember">Desember</option>
-                    </select>
+                <div class="modal-stats">
+                    <p>⏱️ Waktu: <span id="modal-time">00:00</span></p>
+                    <p>🎯 Gerakan: <span id="modal-moves">0</span></p>
+                    <p>🏆 Tingkat: <span id="modal-difficulty">Sedang (3x3)</span></p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="modal-amount">Jumlah Pembayaran</label>
-                    <input type="text" id="modal-amount" placeholder="Masukkan jumlah pembayaran" required>
+
+                <div class="modal-actions">
+                    <button id="play-again-btn" class="btn btn-primary" style="flex: 1;">
+                        Main Lagi
+                    </button>
+                    <button id="close-modal-btn" class="btn btn-outline" style="flex: 1;">
+                        Tutup
+                    </button>
                 </div>
-                
-                <h4>Metode Pembayaran</h4>
-                <div class="payment-methods">
-                    <div class="payment-method" onclick="selectModalPaymentMethod('bank')">
-                        <i class="fas fa-university"></i>
-                        <p>Transfer Bank</p>
-                    </div>
-                    <div class="payment-method" onclick="selectModalPaymentMethod('ewallet')">
-                        <i class="fas fa-wallet"></i>
-                        <p>E-Wallet</p>
-                    </div>
-                    <div class="payment-method" onclick="selectModalPaymentMethod('virtual')">
-                        <i class="fas fa-credit-card"></i>
-                        <p>Virtual Account</p>
-                    </div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary btn-block">Bayar Sekarang</button>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2>Login Akun</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Masukkan email Anda" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Masukkan password Anda" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                <p style="text-align: center; margin-top: 15px;">Belum punya akun? <a href="#" id="showRegister">Daftar disini</a></p>
-            </form>
+    <!-- Hidden Canvas for Image Processing -->
+    <canvas id="canvas" style="display: none;"></canvas>
 
-            <form id="registerForm" style="display: none;">
-                <div class="form-group">
-                    <label for="reg-name">Nama Lengkap</label>
-                    <input type="text" id="reg-name" placeholder="Masukkan nama lengkap" required>
-                </div>
-                <div class="form-group">
-                    <label for="reg-email">Email</label>
-                    <input type="email" id="reg-email" placeholder="Masukkan email Anda" required>
-                </div>
-                <div class="form-group">
-                    <label for="reg-phone">Nomor HP</label>
-                    <input type="tel" id="reg-phone" placeholder="Masukkan nomor HP" required>
-                </div>
-                <div class="form-group">
-                    <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" placeholder="Buat password" required>
-                </div>
-                <div class="form-group">
-                    <label for="reg-confirm">Konfirmasi Password</label>
-                    <input type="password" id="reg-confirm" placeholder="Ulangi password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Daftar</button>
-                <p style="text-align: center; margin-top: 15px;">Sudah punya akun? <a href="#" id="showLogin">Login disini</a></p>
-            </form>
-        </div>
-    </div>
+    <!-- Hidden File Input -->
+    <input type="file" id="file-input" accept="image/*" style="display: none;">
 
-    <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Property Data
-        const properties = {
-            property1: {
-                title: "Kontrakan Mawar Indah",
-                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                address: "Jl. Mawar Indah No. 10, Bandung",
-                bed: 3,
-                bath: 2,
-                size: 60,
-                price: "Rp 1.500.000/bulan",
-                description: "Kontrakan nyaman dengan 3 kamar tidur, 2 kamar mandi, dapur bersama, dan ruang tamu. Lokasi strategis dekat pusat kota dengan akses transportasi yang mudah.",
-                facilities: [
-                    "Kamar mandi dalam",
-                    "Dapur bersama",
-                    "Ruang tamu",
-                    "Parkiran motor",
-                    "Wifi",
-                    "Air bersih"
-                ]
+        // Game State
+        const gameState = {
+            image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+            puzzlePieces: [],
+            selectedPiece: null,
+            difficulty: 3,
+            stats: {
+                moves: 0,
+                timeElapsed: 0,
+                isComplete: false
             },
-            property2: {
-                title: "Kontrakan Melati Asri",
-                image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                address: "Jl. Melati No. 5, Jakarta",
-                bed: 2,
-                bath: 1,
-                size: 45,
-                price: "Rp 1.200.000/bulan",
-                description: "Kontrakan cozy dengan 2 kamar tidur dan 1 kamar mandi. Lingkungan asri dan aman dengan fasilitas memadai untuk kebutuhan harian.",
-                facilities: [
-                    "Kamar mandi dalam",
-                    "Dapur kecil",
-                    "Area jemur",
-                    "Parkiran motor",
-                    "Air bersih",
-                    "Keamanan 24 jam"
-                ]
-            },
-            property3: {
-                title: "Kontrakan Anggrek Permai",
-                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                address: "Jl. Anggrek No. 15, Surabaya",
-                bed: 4,
-                bath: 2,
-                size: 75,
-                price: "Rp 2.000.000/bulan",
-                description: "Kontrakan luas dengan 4 kamar tidur cocok untuk keluarga kecil atau kelompok. Dilengkapi dengan ruang tamu besar dan dapur lengkap.",
-                facilities: [
-                    "2 Kamar mandi dalam",
-                    "Dapur lengkap",
-                    "Ruang tamu luas",
-                    "Parkiran mobil dan motor",
-                    "Wifi high-speed",
-                    "Air bersih dan AC di ruang tamu"
-                ]
-            }
+            isPlaying: false,
+            isPaused: false,
+            showHint: false,
+            tabPattern: []
         };
 
-        // Modal Functions
-        function openModal(propertyId) {
-            const property = properties[propertyId];
-            document.getElementById('modalPropertyTitle').textContent = property.title;
-            document.getElementById('modalPropertyImage').src = property.image;
-            document.getElementById('modalPropertyImage').alt = property.title;
-            document.getElementById('modalPropertyAddress').textContent = property.address;
-            document.getElementById('modalPropertyBed').textContent = property.bed;
-            document.getElementById('modalPropertyBath').textContent = property.bath;
-            document.getElementById('modalPropertySize').textContent = property.size;
-            document.getElementById('modalPropertyPrice').textContent = property.price;
-            document.getElementById('modalPropertyDescription').textContent = property.description;
+        // DOM Elements
+        const elements = {
+            // Controls
+            uploadBtn: document.getElementById('upload-btn'),
+            difficultySelect: document.getElementById('difficulty-select'),
+            startBtn: document.getElementById('start-btn'),
+            startBtn2: document.getElementById('start-btn-2'),
+            resetBtn: document.getElementById('reset-btn'),
+            hintBtn: document.getElementById('hint-btn'),
+            shuffleBtn: document.getElementById('shuffle-btn'),
+            gameActions: document.getElementById('game-actions'),
             
-            const facilitiesList = document.getElementById('modalPropertyFacilities');
-            facilitiesList.innerHTML = '';
-            property.facilities.forEach(facility => {
-                const li = document.createElement('li');
-                li.innerHTML = `<i class="fas fa-check"></i> ${facility}`;
-                facilitiesList.appendChild(li);
-            });
+            // Stats
+            timeDisplay: document.getElementById('time-display'),
+            movesDisplay: document.getElementById('moves-display'),
+            progressPercent: document.getElementById('progress-percent'),
+            progressFill: document.getElementById('progress-fill'),
             
-            document.getElementById('propertyModal').style.display = 'flex';
-        }
+            // Game Areas
+            previewCard: document.getElementById('preview-card'),
+            puzzleSection: document.getElementById('puzzle-section'),
+            previewImage: document.getElementById('preview-image'),
+            hintContainer: document.getElementById('hint-container'),
+            hintImage: document.getElementById('hint-image'),
+            puzzleContainer: document.getElementById('puzzle-container'),
+            selectedPieceBadge: document.getElementById('selected-piece-badge'),
+            selectedHint: document.getElementById('selected-hint'),
+            selectedPieceNumber: document.getElementById('selected-piece-number'),
+            piecesContainer: document.getElementById('pieces-container'),
+            noPieces: document.getElementById('no-pieces'),
+            remainingPieces: document.getElementById('remaining-pieces'),
+            
+            // Modal
+            celebrationModal: document.getElementById('celebration-modal'),
+            modalImage: document.getElementById('modal-image'),
+            modalTime: document.getElementById('modal-time'),
+            modalMoves: document.getElementById('modal-moves'),
+            modalDifficulty: document.getElementById('modal-difficulty'),
+            playAgainBtn: document.getElementById('play-again-btn'),
+            closeModalBtn: document.getElementById('close-modal-btn'),
+            
+            // Canvas
+            canvas: document.getElementById('canvas'),
+            ctx: document.getElementById('canvas').getContext('2d'),
+            
+            // File Input
+            fileInput: document.getElementById('file-input')
+        };
 
-        function openPaymentModal() {
-            document.getElementById('paymentModal').style.display = 'flex';
-            closeModal(); // Close other open modals
-        }
+        // Timer
+        let timer = null;
 
-        function openLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex';
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('registerForm').style.display = 'none';
-        }
-
-        function closeModal() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
+        // Initialize
+        function init() {
+            // Set default image
+            elements.previewImage.src = gameState.image;
+            elements.hintImage.src = gameState.image;
+            elements.modalImage.src = gameState.image;
+            
+            // Event Listeners
+            elements.uploadBtn.addEventListener('click', () => elements.fileInput.click());
+            elements.fileInput.addEventListener('change', handleFileUpload);
+            elements.difficultySelect.addEventListener('change', (e) => {
+                gameState.difficulty = parseInt(e.target.value);
             });
+            elements.startBtn.addEventListener('click', startGame);
+            elements.startBtn2.addEventListener('click', startGame);
+            elements.resetBtn.addEventListener('click', resetGame);
+            elements.hintBtn.addEventListener('click', toggleHint);
+            elements.shuffleBtn.addEventListener('click', shufflePieces);
+            elements.puzzleContainer.addEventListener('click', handlePuzzleAreaClick);
+            elements.playAgainBtn.addEventListener('click', playAgain);
+            elements.closeModalBtn.addEventListener('click', closeModal);
+            
+            // Set initial difficulty
+            gameState.difficulty = parseInt(elements.difficultySelect.value);
         }
 
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                closeModal();
+        // File Upload
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    gameState.image = e.target.result;
+                    elements.previewImage.src = gameState.image;
+                    elements.hintImage.src = gameState.image;
+                    elements.modalImage.src = gameState.image;
+                    resetGame();
+                };
+                reader.readAsDataURL(file);
             }
-        });
-
-        // Payment Method Selection
-        function selectPaymentMethod(method) {
-            document.querySelectorAll('.payment-methods .payment-method').forEach(el => {
-                el.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
         }
 
-        function selectModalPaymentMethod(method) {
-            document.querySelectorAll('#paymentModal .payment-method').forEach(el => {
-                el.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-        }
-
-        // Login/Register Form Toggle
-        document.getElementById('showRegister').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('registerForm').style.display = 'block';
-        });
-
-        document.getElementById('showLogin').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('registerForm').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
-        });
-
-        // Form Submissions
-        document.getElementById('loginBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            openLoginModal();
-        });
-
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Login berhasil!');
-            closeModal();
-        });
-
-        document.getElementById('registerForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const password = document.getElementById('reg-password').value;
-            const confirm = document.getElementById('reg-confirm').value;
-            
-            if (password !== confirm) {
-                alert('Password dan konfirmasi password tidak sama!');
-                return;
-            }
-            
-            alert('Pendaftaran berhasil! Silakan login.');
-            document.getElementById('registerForm').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
-        });
-
-        document.querySelector('.payment-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Pembayaran berhasil diproses! Kami akan mengirimkan konfirmasi via email.');
-            closeModal();
-        });
-
-        document.querySelector('#paymentModal .payment-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Pembayaran berhasil diproses! Kami akan mengirimkan konfirmasi via email.');
-            closeModal();
-        });
-
-        document.querySelector('.report-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Laporan Anda telah kami terima. Tim kami akan segera menghubungi Anda.');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+        // Generate tab pattern
+        function generateTabPattern(difficulty) {
+            const pattern = [];
+            for (let row = 0; row < difficulty; row++) {
+                pattern[row] = [];
+                for (let col = 0; col < difficulty - 1; col++) {
+                    pattern[row][col] = Math.random() > 0.5;
                 }
+            }
+            return pattern;
+        }
+
+        // Create puzzle shape
+        function createPuzzleShape(row, col, pieceWidth, pieceHeight, difficulty, tabPattern) {
+            const tabSize = Math.min(pieceWidth, pieceHeight) * 0.15;
+            const tabWidth = pieceWidth * 0.3;
+            const tabHeight = pieceHeight * 0.3;
+
+            // Determine tabs
+            const hasTopTab = row > 0 ? (tabPattern[row - 1]?.[col] ?? false) : false;
+            const hasRightTab = col < difficulty - 1 ? (tabPattern[row]?.[col] ?? false) : false;
+            const hasBottomTab = row < difficulty - 1 ? !(tabPattern[row]?.[col] ?? false) : false;
+            const hasLeftTab = col > 0 ? !(tabPattern[row]?.[col - 1] ?? false) : false;
+
+            // Create SVG path
+            let path = `M 0 0`;
+
+            // Top edge
+            if (row === 0) {
+                path += ` L ${pieceWidth} 0`;
+            } else if (hasTopTab) {
+                path += ` L ${pieceWidth * 0.35} 0`;
+                path += ` L ${pieceWidth * 0.35} ${-tabSize}`;
+                path += ` Q ${pieceWidth * 0.4} ${-tabSize * 1.3} ${pieceWidth * 0.5} ${-tabSize * 1.3}`;
+                path += ` Q ${pieceWidth * 0.6} ${-tabSize * 1.3} ${pieceWidth * 0.65} ${-tabSize}`;
+                path += ` L ${pieceWidth * 0.65} 0`;
+                path += ` L ${pieceWidth} 0`;
+            } else {
+                path += ` L ${pieceWidth * 0.35} 0`;
+                path += ` Q ${pieceWidth * 0.4} ${tabSize * 0.8} ${pieceWidth * 0.5} ${tabSize * 0.8}`;
+                path += ` Q ${pieceWidth * 0.6} ${tabSize * 0.8} ${pieceWidth * 0.65} 0`;
+                path += ` L ${pieceWidth} 0`;
+            }
+
+            // Right edge
+            if (col === difficulty - 1) {
+                path += ` L ${pieceWidth} ${pieceHeight}`;
+            } else if (hasRightTab) {
+                path += ` L ${pieceWidth} ${pieceHeight * 0.35}`;
+                path += ` L ${pieceWidth + tabSize} ${pieceHeight * 0.35}`;
+                path += ` Q ${pieceWidth + tabSize * 1.3} ${pieceHeight * 0.4} ${pieceWidth + tabSize * 1.3} ${pieceHeight * 0.5}`;
+                path += ` Q ${pieceWidth + tabSize * 1.3} ${pieceHeight * 0.6} ${pieceWidth + tabSize} ${pieceHeight * 0.65}`;
+                path += ` L ${pieceWidth} ${pieceHeight * 0.65}`;
+                path += ` L ${pieceWidth} ${pieceHeight}`;
+            } else {
+                path += ` L ${pieceWidth} ${pieceHeight * 0.35}`;
+                path += ` Q ${pieceWidth - tabSize * 0.8} ${pieceHeight * 0.4} ${pieceWidth - tabSize * 0.8} ${pieceHeight * 0.5}`;
+                path += ` Q ${pieceWidth - tabSize * 0.8} ${pieceHeight * 0.6} ${pieceWidth} ${pieceHeight * 0.65}`;
+                path += ` L ${pieceWidth} ${pieceHeight}`;
+            }
+
+            // Bottom edge
+            if (row === difficulty - 1) {
+                path += ` L 0 ${pieceHeight}`;
+            } else if (hasBottomTab) {
+                path += ` L ${pieceWidth * 0.65} ${pieceHeight}`;
+                path += ` L ${pieceWidth * 0.65} ${pieceHeight + tabSize}`;
+                path += ` Q ${pieceWidth * 0.6} ${pieceHeight + tabSize * 1.3} ${pieceWidth * 0.5} ${pieceHeight + tabSize * 1.3}`;
+                path += ` Q ${pieceWidth * 0.4} ${pieceHeight + tabSize * 1.3} ${pieceWidth * 0.35} ${pieceHeight + tabSize}`;
+                path += ` L ${pieceWidth * 0.35} ${pieceHeight}`;
+                path += ` L 0 ${pieceHeight}`;
+            } else {
+                path += ` L ${pieceWidth * 0.65} ${pieceHeight}`;
+                path += ` Q ${pieceWidth * 0.6} ${pieceHeight - tabSize * 0.8} ${pieceWidth * 0.5} ${pieceHeight - tabSize * 0.8}`;
+                path += ` Q ${pieceWidth * 0.4} ${pieceHeight - tabSize * 0.8} ${pieceWidth * 0.35} ${pieceHeight}`;
+                path += ` L 0 ${pieceHeight}`;
+            }
+
+            // Left edge
+            if (col === 0) {
+                path += ` L 0 0`;
+            } else if (hasLeftTab) {
+                path += ` L 0 ${pieceHeight * 0.65}`;
+                path += ` L ${-tabSize} ${pieceHeight * 0.65}`;
+                path += ` Q ${-tabSize * 1.3} ${pieceHeight * 0.6} ${-tabSize * 1.3} ${pieceHeight * 0.5}`;
+                path += ` Q ${-tabSize * 1.3} ${pieceHeight * 0.4} ${-tabSize} ${pieceHeight * 0.35}`;
+                path += ` L 0 ${pieceHeight * 0.35}`;
+                path += ` L 0 0`;
+            } else {
+                path += ` L 0 ${pieceHeight * 0.65}`;
+                path += ` Q ${tabSize * 0.8} ${pieceHeight * 0.6} ${tabSize * 0.8} ${pieceHeight * 0.5}`;
+                path += ` Q ${tabSize * 0.8} ${pieceHeight * 0.4} 0 ${pieceHeight * 0.35}`;
+                path += ` L 0 0`;
+            }
+
+            path += ` Z`;
+
+            return {
+                path,
+                hasTopTab,
+                hasRightTab,
+                hasBottomTab,
+                hasLeftTab
+            };
+        }
+
+        // Generate puzzle pieces
+        function generatePuzzlePieces() {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = "anonymous";
+                img.onload = function() {
+                    // Set canvas size
+                    const maxSize = window.innerWidth < 768 ? Math.min(window.innerWidth - 40, 350) : 400;
+                    const aspectRatio = img.width / img.height;
+                    let canvasWidth, canvasHeight;
+
+                    if (aspectRatio > 1) {
+                        canvasWidth = maxSize;
+                        canvasHeight = maxSize / aspectRatio;
+                    } else {
+                        canvasHeight = maxSize;
+                        canvasWidth = maxSize * aspectRatio;
+                    }
+
+                    elements.canvas.width = canvasWidth;
+                    elements.canvas.height = canvasHeight;
+                    elements.ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                    elements.ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+
+                    // Generate tab pattern
+                    const newTabPattern = generateTabPattern(gameState.difficulty);
+                    gameState.tabPattern = newTabPattern;
+
+                    const pieceWidth = canvasWidth / gameState.difficulty;
+                    const pieceHeight = canvasHeight / gameState.difficulty;
+                    const pieces = [];
+
+                    for (let row = 0; row < gameState.difficulty; row++) {
+                        for (let col = 0; col < gameState.difficulty; col++) {
+                            const x = col * pieceWidth;
+                            const y = row * pieceHeight;
+
+                            const shapeData = createPuzzleShape(
+                                row, 
+                                col, 
+                                pieceWidth, 
+                                pieceHeight, 
+                                gameState.difficulty, 
+                                newTabPattern
+                            );
+
+                            // Create piece canvas with extra space for tabs
+                            const pieceCanvas = document.createElement('canvas');
+                            const extraSpace = Math.min(pieceWidth, pieceHeight) * 0.4;
+                            pieceCanvas.width = pieceWidth + extraSpace;
+                            pieceCanvas.height = pieceHeight + extraSpace;
+                            const pieceCtx = pieceCanvas.getContext('2d');
+
+                            if (pieceCtx) {
+                                pieceCtx.clearRect(0, 0, pieceCanvas.width, pieceCanvas.height);
+
+                                // Create clipping path
+                                const path2D = new Path2D(shapeData.path);
+                                pieceCtx.save();
+                                pieceCtx.translate(extraSpace / 2, extraSpace / 2);
+                                pieceCtx.clip(path2D);
+
+                                // Draw image piece
+                                pieceCtx.drawImage(
+                                    elements.canvas, 
+                                    x, 
+                                    y, 
+                                    pieceWidth, 
+                                    pieceHeight, 
+                                    0, 
+                                    0, 
+                                    pieceWidth, 
+                                    pieceHeight
+                                );
+                                pieceCtx.restore();
+
+                                // Draw border
+                                pieceCtx.translate(extraSpace / 2, extraSpace / 2);
+                                pieceCtx.strokeStyle = "#8B5CF6";
+                                pieceCtx.lineWidth = 2;
+                                pieceCtx.stroke(path2D);
+
+                                pieces.push({
+                                    id: row * gameState.difficulty + col,
+                                    row,
+                                    col,
+                                    correctX: x,
+                                    correctY: y,
+                                    width: pieceWidth,
+                                    height: pieceHeight,
+                                    isPlaced: false,
+                                    imageData: pieceCanvas.toDataURL(),
+                                    clipPath: shapeData.path,
+                                    hasTopTab: shapeData.hasTopTab,
+                                    hasRightTab: shapeData.hasRightTab,
+                                    hasBottomTab: shapeData.hasBottomTab,
+                                    hasLeftTab: shapeData.hasLeftTab
+                                });
+                            }
+                        }
+                    }
+
+                    // Shuffle pieces
+                    gameState.puzzlePieces = pieces.sort(() => Math.random() - 0.5);
+                    resolve();
+                };
+                img.onerror = function() {
+                    console.error("Failed to load image");
+                                    resolve();
+            };
+            img.src = gameState.image;
+        });
+    }
+
+    // Format time
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Update stats display
+    function updateStats() {
+        elements.timeDisplay.textContent = formatTime(gameState.stats.timeElapsed);
+        elements.movesDisplay.textContent = gameState.stats.moves;
+        
+        const placedPieces = gameState.puzzlePieces.filter(p => p.isPlaced).length;
+        const totalPieces = gameState.puzzlePieces.length;
+        const percentage = totalPieces > 0 ? Math.round((placedPieces / totalPieces) * 100) : 0;
+        
+        elements.progressPercent.textContent = `${percentage}%`;
+        elements.progressFill.style.width = `${percentage}%`;
+        
+        // Update remaining pieces count
+        const remaining = totalPieces - placedPieces;
+        elements.remainingPieces.textContent = `${remaining} tersisa`;
+        
+        if (remaining === 0) {
+            elements.noPieces.style.display = 'block';
+        } else {
+            elements.noPieces.style.display = 'none';
+        }
+    }
+
+    // Start game
+    async function startGame() {
+        gameState.isPlaying = true;
+        gameState.isPaused = false;
+        gameState.stats = {
+            moves: 0,
+            timeElapsed: 0,
+            isComplete: false
+        };
+        gameState.selectedPiece = null;
+        
+        // Show game area
+        elements.previewCard.style.display = 'none';
+        elements.puzzleSection.style.display = 'block';
+        elements.gameActions.style.display = 'flex';
+        
+        // Generate puzzle pieces
+        await generatePuzzlePieces();
+        
+        // Set puzzle container size
+        elements.puzzleContainer.style.width = `${elements.canvas.width}px`;
+        elements.puzzleContainer.style.height = `${elements.canvas.height}px`;
+        
+        // Update grid background
+        elements.puzzleContainer.querySelector('.puzzle-grid').style.backgroundSize = 
+            `${elements.canvas.width / gameState.difficulty}px ${elements.canvas.height / gameState.difficulty}px`;
+        
+        // Render pieces
+        renderPieces();
+        updateStats();
+        
+        // Start timer
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => {
+            if (!gameState.isPaused && !gameState.stats.isComplete) {
+                gameState.stats.timeElapsed++;
+                elements.timeDisplay.textContent = formatTime(gameState.stats.timeElapsed);
+            }
+        }, 1000);
+    }
+
+    // Render pieces
+    function renderPieces() {
+        // Clear pieces container
+        elements.piecesContainer.innerHTML = '';
+        
+        // Render unplaced pieces
+        gameState.puzzlePieces
+            .filter(piece => !piece.isPlaced)
+            .forEach(piece => {
+                const pieceElement = document.createElement('div');
+                pieceElement.className = `piece-thumbnail ${gameState.selectedPiece === piece.id ? 'selected' : ''}`;
+                pieceElement.innerHTML = `
+                    <img src="${piece.imageData}" alt="Piece ${piece.id + 1}" style="width: 100%;">
+                    <div class="piece-number">${piece.id + 1}</div>
+                    ${gameState.selectedPiece === piece.id ? '<div class="piece-overlay"></div>' : ''}
+                `;
+                pieceElement.addEventListener('click', () => selectPiece(piece.id));
+                elements.piecesContainer.appendChild(pieceElement);
             });
+        
+        // Render placed pieces
+        const placedPieces = gameState.puzzlePieces.filter(piece => piece.isPlaced);
+        placedPieces.forEach(piece => {
+            const pieceElement = document.createElement('div');
+            pieceElement.className = 'puzzle-piece';
+            pieceElement.style.left = `${piece.correctX}px`;
+            pieceElement.style.top = `${piece.correctY}px`;
+            pieceElement.style.width = `${piece.width}px`;
+            pieceElement.style.height = `${piece.height}px`;
+            pieceElement.innerHTML = `
+                <img src="${piece.imageData}" alt="Piece ${piece.id + 1}" style="width: 100%; height: 100%;">
+                <div class="piece-check">✓</div>
+            `;
+            elements.puzzleContainer.appendChild(pieceElement);
         });
+    }
 
-        // Auto update payment amount when property is selected
-        document.getElementById('property').addEventListener('change', function() {
-            const amountField = document.getElementById('amount');
-            if (this.value === 'property1') {
-                amountField.value = '1500000';
-            } else if (this.value === 'property2') {
-                amountField.value = '1200000';
-            } else if (this.value === 'property3') {
-                amountField.value = '2000000';
+    // Select piece
+    function selectPiece(pieceId) {
+        if (gameState.isPaused) return;
+        
+        const piece = gameState.puzzlePieces.find(p => p.id === pieceId);
+        if (piece && !piece.isPlaced) {
+            gameState.selectedPiece = gameState.selectedPiece === pieceId ? null : pieceId;
+            
+            // Update UI
+            if (gameState.selectedPiece !== null) {
+                elements.selectedPieceBadge.style.display = 'inline-block';
+                elements.selectedPieceBadge.textContent = `Piece ${pieceId + 1} dipilih`;
+                elements.selectedPieceNumber.textContent = pieceId + 1;
+                elements.selectedHint.style.display = 'block';
+                elements.puzzleContainer.classList.add('active');
+            } else {
+                elements.selectedPieceBadge.style.display = 'none';
+                elements.selectedHint.style.display = 'none';
+                elements.puzzleContainer.classList.remove('active');
             }
-        });
+            
+            renderPieces();
+            
+            // Haptic feedback for mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+    }
 
-        document.getElementById('modal-property').addEventListener('change', function() {
-            const amountField = document.getElementById('modal-amount');
-            if (this.value === 'property1') {
-                amountField.value = '1500000';
-            } else if (this.value === 'property2') {
-                amountField.value = '1200000';
-            } else if (this.value === 'property3') {
-                amountField.value = '2000000';
+    // Handle puzzle area click
+    function handlePuzzleAreaClick(e) {
+        if (!gameState.selectedPiece || gameState.isPaused) return;
+        
+        const rect = elements.puzzleContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Find selected piece
+        const pieceIndex = gameState.puzzlePieces.findIndex(p => p.id === gameState.selectedPiece);
+        if (pieceIndex === -1) return;
+        
+        const piece = gameState.puzzlePieces[pieceIndex];
+        
+        // Check if position is correct (with tolerance)
+        const toleranceX = piece.width * 0.5; // 50% tolerance
+        const toleranceY = piece.height * 0.5; // 50% tolerance
+        
+        const isCorrectPosition = 
+            Math.abs(x - piece.correctX) < toleranceX && 
+            Math.abs(y - piece.correctY) < toleranceY;
+        
+        if (isCorrectPosition) {
+            // Place the piece
+            gameState.puzzlePieces[pieceIndex].isPlaced = true;
+            gameState.stats.moves++;
+            
+            // Check if puzzle is complete
+            const isComplete = gameState.puzzlePieces.every(p => p.isPlaced);
+            if (isComplete) {
+                gameState.stats.isComplete = true;
+                clearInterval(timer);
+                showCelebration();
             }
-        });
-    </script>
+            
+            // Haptic feedback for success
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+        } else {
+            // Haptic feedback for error
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
+            }
+        }
+        
+        // Reset selection
+        gameState.selectedPiece = null;
+        elements.selectedPieceBadge.style.display = 'none';
+        elements.selectedHint.style.display = 'none';
+        elements.puzzleContainer.classList.remove('active');
+        
+        // Update UI
+        renderPieces();
+        updateStats();
+    }
+
+    // Toggle hint
+    function toggleHint() {
+        gameState.showHint = !gameState.showHint;
+        elements.hintContainer.style.display = gameState.showHint ? 'block' : 'none';
+        elements.hintBtn.innerHTML = gameState.showHint ? '<span>👁️</span> Sembunyikan' : '<span>👁️</span> Hint';
+    }
+
+    // Shuffle pieces
+    function shufflePieces() {
+        gameState.puzzlePieces = gameState.puzzlePieces
+            .map(piece => ({
+                ...piece,
+                isPlaced: false
+            }))
+            .sort(() => Math.random() - 0.5);
+        
+        gameState.selectedPiece = null;
+        gameState.stats.moves++;
+        
+        elements.selectedPieceBadge.style.display = 'none';
+        elements.selectedHint.style.display = 'none';
+        elements.puzzleContainer.classList.remove('active');
+        
+        renderPieces();
+        updateStats();
+    }
+
+    // Show celebration
+    function showCelebration() {
+        elements.modalTime.textContent = formatTime(gameState.stats.timeElapsed);
+        elements.modalMoves.textContent = gameState.stats.moves;
+        elements.modalDifficulty.textContent = getDifficultyLabel(gameState.difficulty);
+        elements.celebrationModal.classList.add('active');
+        
+        // Celebration haptic
+        if (navigator.vibrate) {
+            navigator.vibrate([200, 100, 200, 100, 200]);
+        }
+    }
+
+    // Play again
+    function playAgain() {
+        closeModal();
+        startGame();
+    }
+
+    // Close modal
+    function closeModal() {
+        elements.celebrationModal.classList.remove('active');
+    }
+
+    // Reset game
+    function resetGame() {
+        gameState.isPlaying = false;
+        gameState.isPaused = false;
+        gameState.stats = {
+            moves: 0,
+            timeElapsed: 0,
+            isComplete: false
+        };
+        gameState.selectedPiece = null;
+        gameState.showHint = false;
+        
+        clearInterval(timer);
+        
+        // Show preview and hide game area
+        elements.previewCard.style.display = 'block';
+        elements.puzzleSection.style.display = 'none';
+        elements.gameActions.style.display = 'none';
+        elements.hintContainer.style.display = 'none';
+        elements.hintBtn.innerHTML = '<span>👁️</span> Hint';
+        
+        // Update stats
+        updateStats();
+    }
+
+    // Get difficulty label
+    function getDifficultyLabel(difficulty) {
+        switch (difficulty) {
+            case 2: return 'Mudah (2x2)';
+            case 3: return 'Sedang (3x3)';
+            case 4: return 'Sulit (4x4)';
+            case 5: return 'Expert (5x5)';
+            default: return 'Sedang (3x3)';
+        }
+    }
+
+    // Initialize the game
+    init();
+</script>
 </body>
 </html>
-                  
