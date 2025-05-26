@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Game Premium</title>
+    <title>Premium Puzzle Game</title>
     <style>
-        /* Reset dan Base Styles */
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -263,6 +263,22 @@
                 linear-gradient(to bottom, rgba(124, 58, 237, 0.3) 1px, transparent 1px);
         }
 
+        .puzzle-area-number {
+            position: absolute;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: rgba(91, 33, 182, 0.7);
+            pointer-events: none;
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+        }
+
         .puzzle-piece {
             position: absolute;
             z-index: 1;
@@ -294,6 +310,7 @@
             align-items: center;
             justify-content: center;
             color: #9ca3af;
+            z-index: 0;
         }
 
         .empty-emoji {
@@ -315,6 +332,7 @@
             border-radius: 12px;
             pointer-events: none;
             animation: pulse 1.5s infinite;
+            z-index: 2;
         }
 
         @keyframes pulse {
@@ -367,17 +385,6 @@
             background-color: rgba(124, 58, 237, 0.2);
             border-radius: 8px;
             animation: pulse 1.5s infinite;
-        }
-
-        .piece-number-badge {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 0.7rem;
         }
 
         .no-pieces {
@@ -529,7 +536,7 @@
         <div class="header">
             <h1>
                 <span>🧩</span>
-                Puzzle Game Premium
+                Premium Puzzle Game
                 <span>🧩</span>
             </h1>
             <p>Susun puzzle dengan presisi sempurna!</p>
@@ -615,6 +622,7 @@
 
                         <div id="puzzle-container" class="puzzle-container" style="width: 300px; height: 300px;">
                             <div class="puzzle-grid"></div>
+                            <!-- Numbered areas will be added here dynamically -->
                             <div class="empty-state">
                                 <div>
                                     <div class="empty-emoji">🧩</div>
@@ -1039,7 +1047,7 @@
             
             // Update remaining pieces count
             const remaining = totalPieces - placedPieces;
-            elements.remainingPieces.textContent = `${remaining} tersisa`;
+                        elements.remainingPieces.textContent = `${remaining} tersisa`;
             
             if (remaining === 0) {
                 elements.noPieces.style.display = 'block';
@@ -1047,267 +1055,247 @@
                 elements.noPieces.style.display = 'none';
             }
         }
-    // Start game
-    async function startGame() {
-        gameState.isPlaying = true;
-        gameState.isPaused = false;
-        gameState.stats = {
-            moves: 0,
-            timeElapsed: 0,
-            isComplete: false
-        };
-        gameState.selectedPiece = null;
-        gameState.showHint = false;
-        
-        // Show game area
-        elements.previewCard.style.display = 'none';
-        elements.puzzleSection.style.display = 'block';
-        elements.gameActions.style.display = 'flex';
-        elements.hintContainer.style.display = 'none';
-        
-        // Generate puzzle pieces
-        await generatePuzzlePieces();
-        
-        // Set puzzle container size
-        elements.puzzleContainer.style.width = `${elements.canvas.width}px`;
-        elements.puzzleContainer.style.height = `${elements.canvas.height}px`;
-        
-        // Update grid background
-        elements.puzzleContainer.querySelector('.puzzle-grid').style.backgroundSize = 
-            `${elements.canvas.width / gameState.difficulty}px ${elements.canvas.height / gameState.difficulty}px`;
-        
-        // Render pieces
-        renderPieces();
-        updateStats();
-        
-        // Start timer
-        if (timer) clearInterval(timer);
-        timer = setInterval(() => {
-            if (!gameState.isPaused && !gameState.stats.isComplete) {
-                gameState.stats.timeElapsed++;
-                elements.timeDisplay.textContent = formatTime(gameState.stats.timeElapsed);
-            }
-        }, 1000);
-    }
 
-    // Render pieces with improved visual feedback
-    function renderPieces() {
-        // Clear pieces container
-        elements.piecesContainer.innerHTML = '';
-        
-        // Render unplaced pieces
-        gameState.puzzlePieces
-            .filter(piece => !piece.isPlaced)
-            .forEach(piece => {
+        // Render pieces with numbered board areas
+        function renderPieces() {
+            // Clear pieces container
+            elements.piecesContainer.innerHTML = '';
+            
+            // Clear existing placed pieces
+            const existingPieces = elements.puzzleContainer.querySelectorAll('.puzzle-piece');
+            existingPieces.forEach(piece => piece.remove());
+            
+            // Clear existing area numbers
+            const existingNumbers = elements.puzzleContainer.querySelectorAll('.puzzle-area-number');
+            existingNumbers.forEach(num => num.remove());
+
+            // Render unplaced pieces (without numbers)
+            gameState.puzzlePieces
+                .filter(piece => !piece.isPlaced)
+                .forEach(piece => {
+                    const pieceElement = document.createElement('div');
+                    pieceElement.className = `piece-thumbnail ${gameState.selectedPiece === piece.id ? 'selected' : ''}`;
+                    pieceElement.innerHTML = `
+                        <img src="${piece.imageData}" alt="Puzzle piece" style="width: 100%;">
+                        ${gameState.selectedPiece === piece.id ? '<div class="piece-overlay"></div>' : ''}
+                    `;
+                    pieceElement.addEventListener('click', () => selectPiece(piece.id));
+                    elements.piecesContainer.appendChild(pieceElement);
+                });
+
+            // Add numbers to puzzle board areas (only for unplaced pieces)
+            gameState.puzzlePieces
+                .filter(piece => !piece.isPlaced)
+                .forEach(piece => {
+                    const numberElement = document.createElement('div');
+                    numberElement.className = 'puzzle-area-number';
+                    numberElement.textContent = piece.id + 1;
+                    numberElement.style.left = `${piece.correctX + piece.width/2 - 12}px`;
+                    numberElement.style.top = `${piece.correctY + piece.height/2 - 12}px`;
+                    elements.puzzleContainer.appendChild(numberElement);
+                });
+
+            // Render placed pieces
+            const placedPieces = gameState.puzzlePieces.filter(piece => piece.isPlaced);
+            placedPieces.forEach(piece => {
                 const pieceElement = document.createElement('div');
-                pieceElement.className = `piece-thumbnail ${gameState.selectedPiece === piece.id ? 'selected' : ''}`;
+                pieceElement.className = 'puzzle-piece';
+                pieceElement.style.left = `${piece.correctX}px`;
+                pieceElement.style.top = `${piece.correctY}px`;
+                pieceElement.style.width = `${piece.width}px`;
+                pieceElement.style.height = `${piece.height}px`;
                 pieceElement.innerHTML = `
-                    <img src="${piece.imageData}" alt="Piece" style="width: 100%;">
-                    ${gameState.selectedPiece === piece.id ? '<div class="piece-overlay"></div>' : ''}
-                    <div class="piece-number-badge">${piece.id + 1}</div>
+                    <img src="${piece.imageData}" alt="Puzzle piece" style="width: 100%; height: 100%;">
+                    <div class="piece-check">✓</div>
                 `;
-                pieceElement.addEventListener('click', () => selectPiece(piece.id));
-                elements.piecesContainer.appendChild(pieceElement);
+                elements.puzzleContainer.appendChild(pieceElement);
             });
-        
-        // Clear existing placed pieces
-        const existingPieces = elements.puzzleContainer.querySelectorAll('.puzzle-piece');
-        existingPieces.forEach(piece => piece.remove());
-        
-        // Render placed pieces with perfect alignment
-        const placedPieces = gameState.puzzlePieces.filter(piece => piece.isPlaced);
-        placedPieces.forEach(piece => {
-            const pieceElement = document.createElement('div');
-            pieceElement.className = 'puzzle-piece';
-            pieceElement.style.left = `${piece.correctX}px`;
-            pieceElement.style.top = `${piece.correctY}px`;
-            pieceElement.style.width = `${piece.width}px`;
-            pieceElement.style.height = `${piece.height}px`;
-            pieceElement.innerHTML = `
-                <img src="${piece.imageData}" alt="Piece" style="width: 100%; height: 100%;">
-                <div class="piece-check">✓</div>
-            `;
-            elements.puzzleContainer.appendChild(pieceElement);
-        });
-    }
 
-    // Select piece with improved feedback
-    function selectPiece(pieceId) {
-        if (gameState.isPaused) return;
-        
-        const piece = gameState.puzzlePieces.find(p => p.id === pieceId);
-        if (piece && !piece.isPlaced) {
-            gameState.selectedPiece = gameState.selectedPiece === pieceId ? null : pieceId;
+            // Update selected piece indicator
+            if (gameState.selectedPiece !== null) {
+                const selectedIndicator = document.createElement('div');
+                selectedIndicator.className = 'selected-indicator';
+                elements.puzzleContainer.appendChild(selectedIndicator);
+            }
+        }
+
+        // Select piece
+        function selectPiece(pieceId) {
+            if (gameState.isPaused) return;
+            
+            const piece = gameState.puzzlePieces.find(p => p.id === pieceId);
+            if (piece && !piece.isPlaced) {
+                gameState.selectedPiece = gameState.selectedPiece === pieceId ? null : pieceId;
+                
+                // Update UI
+                if (gameState.selectedPiece !== null) {
+                    elements.selectedPieceBadge.style.display = 'inline-block';
+                    elements.selectedPieceBadge.textContent = `Piece ${pieceId + 1} dipilih`;
+                    elements.selectedHint.style.display = 'block';
+                    elements.puzzleContainer.classList.add('active');
+                } else {
+                    elements.selectedPieceBadge.style.display = 'none';
+                    elements.selectedHint.style.display = 'none';
+                    elements.puzzleContainer.classList.remove('active');
+                }
+                
+                renderPieces();
+                
+                // Haptic feedback for mobile
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+            }
+        }
+
+        // Handle puzzle area click with perfect placement
+        function handlePuzzleAreaClick(e) {
+            if (!gameState.selectedPiece || gameState.isPaused) return;
+            
+            const rect = elements.puzzleContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Find selected piece
+            const pieceIndex = gameState.puzzlePieces.findIndex(p => p.id === gameState.selectedPiece);
+            if (pieceIndex === -1) return;
+            
+            const piece = gameState.puzzlePieces[pieceIndex];
+            
+            // Check if position is correct (with smaller tolerance for better precision)
+            const toleranceX = piece.width * 0.3; // 30% tolerance
+            const toleranceY = piece.height * 0.3; // 30% tolerance
+            
+            const isCorrectPosition = 
+                Math.abs(x - piece.correctX) < toleranceX && 
+                Math.abs(y - piece.correctY) < toleranceY;
+            
+            if (isCorrectPosition) {
+                // Place the piece at exact correct position
+                gameState.puzzlePieces[pieceIndex].isPlaced = true;
+                gameState.puzzlePieces[pieceIndex].correctX = piece.correctX; // Ensure exact position
+                gameState.puzzlePieces[pieceIndex].correctY = piece.correctY; // Ensure exact position
+                gameState.stats.moves++;
+                
+                // Check if puzzle is complete
+                const isComplete = gameState.puzzlePieces.every(p => p.isPlaced);
+                if (isComplete) {
+                    gameState.stats.isComplete = true;
+                    clearInterval(timer);
+                    showCelebration();
+                }
+                
+                // Haptic feedback for success
+                if (navigator.vibrate) {
+                    navigator.vibrate([100, 50, 100]);
+                }
+            } else {
+                // Haptic feedback for error
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+            }
+            
+            // Reset selection
+            gameState.selectedPiece = null;
+            elements.selectedPieceBadge.style.display = 'none';
+            elements.selectedHint.style.display = 'none';
+            elements.puzzleContainer.classList.remove('active');
             
             // Update UI
-            if (gameState.selectedPiece !== null) {
-                elements.selectedPieceBadge.style.display = 'inline-block';
-                elements.selectedPieceBadge.textContent = `Piece ${pieceId + 1} dipilih`;
-                elements.selectedHint.style.display = 'block';
-                elements.puzzleContainer.classList.add('active');
-            } else {
-                elements.selectedPieceBadge.style.display = 'none';
-                elements.selectedHint.style.display = 'none';
-                elements.puzzleContainer.classList.remove('active');
-            }
-            
             renderPieces();
-            
-            // Haptic feedback for mobile
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
-            }
+            updateStats();
         }
-    }
 
-    // Handle puzzle area click with perfect placement
-    function handlePuzzleAreaClick(e) {
-        if (!gameState.selectedPiece || gameState.isPaused) return;
-        
-        const rect = elements.puzzleContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        // Find selected piece
-        const pieceIndex = gameState.puzzlePieces.findIndex(p => p.id === gameState.selectedPiece);
-        if (pieceIndex === -1) return;
-        
-        const piece = gameState.puzzlePieces[pieceIndex];
-        
-        // Check if position is correct (with smaller tolerance for better precision)
-        const toleranceX = piece.width * 0.3; // 30% tolerance
-        const toleranceY = piece.height * 0.3; // 30% tolerance
-        
-        const isCorrectPosition = 
-            Math.abs(x - piece.correctX) < toleranceX && 
-            Math.abs(y - piece.correctY) < toleranceY;
-        
-        if (isCorrectPosition) {
-            // Place the piece at exact correct position
-            gameState.puzzlePieces[pieceIndex].isPlaced = true;
-            gameState.puzzlePieces[pieceIndex].correctX = piece.correctX; // Ensure exact position
-            gameState.puzzlePieces[pieceIndex].correctY = piece.correctY; // Ensure exact position
+        // Toggle hint
+        function toggleHint() {
+            gameState.showHint = !gameState.showHint;
+            elements.hintContainer.style.display = gameState.showHint ? 'block' : 'none';
+            elements.hintBtn.innerHTML = gameState.showHint ? '<span>👁️</span> Sembunyikan' : '<span>👁️</span> Hint';
+        }
+
+        // Shuffle pieces
+        function shufflePieces() {
+            gameState.puzzlePieces = gameState.puzzlePieces
+                .map(piece => ({
+                    ...piece,
+                    isPlaced: false
+                }))
+                .sort(() => Math.random() - 0.5);
+            
+            gameState.selectedPiece = null;
             gameState.stats.moves++;
             
-            // Check if puzzle is complete
-            const isComplete = gameState.puzzlePieces.every(p => p.isPlaced);
-            if (isComplete) {
-                gameState.stats.isComplete = true;
-                clearInterval(timer);
-                showCelebration();
-            }
+            elements.selectedPieceBadge.style.display = 'none';
+            elements.selectedHint.style.display = 'none';
+            elements.puzzleContainer.classList.remove('active');
             
-            // Haptic feedback for success
+            renderPieces();
+            updateStats();
+        }
+
+        // Show celebration
+        function showCelebration() {
+            elements.modalTime.textContent = formatTime(gameState.stats.timeElapsed);
+            elements.modalMoves.textContent = gameState.stats.moves;
+            elements.modalDifficulty.textContent = getDifficultyLabel(gameState.difficulty);
+            elements.celebrationModal.classList.add('active');
+            
+            // Celebration haptic
             if (navigator.vibrate) {
-                navigator.vibrate([100, 50, 100]);
-            }
-        } else {
-            // Haptic feedback for error
-            if (navigator.vibrate) {
-                navigator.vibrate(200);
+                navigator.vibrate([200, 100, 200, 100, 200]);
             }
         }
-        
-        // Reset selection
-        gameState.selectedPiece = null;
-        elements.selectedPieceBadge.style.display = 'none';
-        elements.selectedHint.style.display = 'none';
-        elements.puzzleContainer.classList.remove('active');
-        
-        // Update UI
-        renderPieces();
-        updateStats();
-    }
 
-    // Toggle hint
-    function toggleHint() {
-        gameState.showHint = !gameState.showHint;
-        elements.hintContainer.style.display = gameState.showHint ? 'block' : 'none';
-        elements.hintBtn.innerHTML = gameState.showHint ? '<span>👁️</span> Sembunyikan' : '<span>👁️</span> Hint';
-    }
-
-    // Shuffle pieces
-    function shufflePieces() {
-        gameState.puzzlePieces = gameState.puzzlePieces
-            .map(piece => ({
-                ...piece,
-                isPlaced: false
-            }))
-            .sort(() => Math.random() - 0.5);
-        
-        gameState.selectedPiece = null;
-        gameState.stats.moves++;
-        
-        elements.selectedPieceBadge.style.display = 'none';
-        elements.selectedHint.style.display = 'none';
-        elements.puzzleContainer.classList.remove('active');
-        
-        renderPieces();
-        updateStats();
-    }
-
-    // Show celebration
-    function showCelebration() {
-        elements.modalTime.textContent = formatTime(gameState.stats.timeElapsed);
-        elements.modalMoves.textContent = gameState.stats.moves;
-        elements.modalDifficulty.textContent = getDifficultyLabel(gameState.difficulty);
-        elements.celebrationModal.classList.add('active');
-        
-        // Celebration haptic
-        if (navigator.vibrate) {
-            navigator.vibrate([200, 100, 200, 100, 200]);
+        // Play again
+        function playAgain() {
+            closeModal();
+            startGame();
         }
-    }
 
-    // Play again
-    function playAgain() {
-        closeModal();
-        startGame();
-    }
-
-    // Close modal
-    function closeModal() {
-        elements.celebrationModal.classList.remove('active');
-    }
-
-    // Reset game
-    function resetGame() {
-        gameState.isPlaying = false;
-        gameState.isPaused = false;
-        gameState.stats = {
-            moves: 0,
-            timeElapsed: 0,
-            isComplete: false
-        };
-        gameState.selectedPiece = null;
-        gameState.showHint = false;
-        
-        clearInterval(timer);
-        
-        // Show preview and hide game area
-        elements.previewCard.style.display = 'block';
-        elements.puzzleSection.style.display = 'none';
-        elements.gameActions.style.display = 'none';
-        elements.hintContainer.style.display = 'none';
-        elements.hintBtn.innerHTML = '<span>👁️</span> Hint';
-        
-        // Update stats
-        updateStats();
-    }
-
-    // Get difficulty label
-    function getDifficultyLabel(difficulty) {
-        switch (difficulty) {
-            case 2: return 'Mudah (2x2)';
-            case 3: return 'Sedang (3x3)';
-            case 4: return 'Sulit (4x4)';
-            case 5: return 'Expert (5x5)';
-            default: return 'Sedang (3x3)';
+        // Close modal
+        function closeModal() {
+            elements.celebrationModal.classList.remove('active');
         }
-    }
 
-    // Initialize the game
-    init();
-</script>
+        // Reset game
+        function resetGame() {
+            gameState.isPlaying = false;
+            gameState.isPaused = false;
+            gameState.stats = {
+                moves: 0,
+                timeElapsed: 0,
+                isComplete: false
+            };
+            gameState.selectedPiece = null;
+            gameState.showHint = false;
+            
+            clearInterval(timer);
+            
+            // Show preview and hide game area
+            elements.previewCard.style.display = 'block';
+            elements.puzzleSection.style.display = 'none';
+            elements.gameActions.style.display = 'none';
+            elements.hintContainer.style.display = 'none';
+            elements.hintBtn.innerHTML = '<span>👁️</span> Hint';
+            
+            // Update stats
+            updateStats();
+        }
+
+        // Get difficulty label
+        function getDifficultyLabel(difficulty) {
+            switch (difficulty) {
+                case 2: return 'Mudah (2x2)';
+                case 3: return 'Sedang (3x3)';
+                case 4: return 'Sulit (4x4)';
+                case 5: return 'Expert (5x5)';
+                default: return 'Sedang (3x3)';
+            }
+        }
+
+        // Initialize the game
+        init();
+    </script>
 </body>
 </html>
